@@ -1,13 +1,11 @@
 /* reset */
-body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
-    font-family: "Nanum Gothic", sans-serif;
-    font-size: 14px;
-}
+body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 15px; }
 
 .wc-app button {
-  /*background-color: #0063b1;*/
+  background-color: #00aad2;
   border: none;
-  border-radius: 1px;
   color: #ffffff;
   cursor: pointer;
   outline: none;
@@ -25,12 +23,12 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   visibility: hidden; }
 
 .wc-header {
-  background-color: #302f35;
+  background-color: #00aad2;
   box-shadow: 0 1px rgba(0, 0, 0, 0.2);
   box-sizing: content-box;
   color: #ffffff;
   font-weight: 500;
-  height: 30px;
+  height: 118px;
   left: 0;
   letter-spacing: 0.5px;
   padding: 8px 8px 0 8px;
@@ -44,7 +42,8 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   margin-bottom: 10px; }
 
 .wc-message-groups {
-  bottom: 50px;
+  bottom: 131px;
+  height:597px;
   left: 0;
   transform: translateY(0);
   overflow-x: hidden;
@@ -52,10 +51,8 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   padding: 10px;
   position: absolute;
   right: 0;
-  top: 38px;
-  transition: transform 0.2s cubic-bezier(0, 0, 0.5, 1); 
-  background-color:#F2F3F7
-}
+  top: 127px;
+  transition: transform 0.2s cubic-bezier(0, 0, 0.5, 1); }
   .wc-message-groups.no-header {
     top: 0; }
 
@@ -124,22 +121,29 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
 
 .wc-console {
   /*border: 5px solid #dbdee1;*/
-  background-color:#fff;
-  bottom: 0;
+  bottom: 84px;
   box-sizing: border-box;
   height: 50px;
   left: 0;
   position: absolute;
-  right: 0; }
+  right: 0; 
+  background-color:#FFF
+}
 
 /* views */
 .wc-chatview-panel {
-  width:380px;
-  height:528px;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  bottom: 0; }
+    overflow: hidden;
+    background: #f1f3f6;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.30);
+    border-radius: 5px 5px 0 0;
+    width: 499px;
+    height: 867px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 0px;
+    z-index: 99;
+}
 
 /* messages */
 .wc-message-wrapper {
@@ -168,12 +172,11 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   padding-right: 8px; }
 
 .wc-message svg.wc-message-callout {
-    background: url("../image/chatbotStyle/ico_profi.png") no-repeat;
-    width: 30px;
-    height: 30px;
+    background: url("../image/chatbotStyle/user_ch.png") no-repeat;
+    width: 33px;
+    height: 33px;
     display: inline-block;
     position: fixed;
-    margin: 0 0 0 17px
     /*height: 22px;
     position: absolute;
     stroke: none;
@@ -182,7 +185,11 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
 }
 
 .wc-message-content {
-  word-break: break-word; }
+  /*border-radius: 2px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px;*/
+  word-break: break-word;
+}
 
 .wc-message-content.clickable {
   cursor: pointer; }
@@ -212,7 +219,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
 /* cards */
 .wc-card {
   background-color: #ffffff; 
-  border-radius:8px;
+  border-radius:6px;
 }
   .wc-card .non-adaptive-content {
     margin: 8px 8px 0 8px; }
@@ -299,9 +306,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   width: 302px; }
 
 .wc-adaptive-card {
-    width: 302px;
-    /*width: 318px;*/
-}
+  width: 318px; }
 
 .wc-wide .wc-card {
   border: 1px solid #d2dde5;
@@ -323,6 +328,8 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   margin-right: 0; }
 
 /* list */
+.wc-list{background-color:#f1f3f6}
+
 .wc-list > .wc-card {
   margin-top: 8px; }
 
@@ -389,6 +396,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   text-align: right; }
 
 .wc-message-from-me .wc-message-content {
+  /*background-color: #00aad2;*/
   color: #ffffff; }
 
 .wc-message-from-me svg.wc-message-callout path {
@@ -409,7 +417,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   margin-left: 40px; }
 
 .wc-message-from-bot .wc-message-content {
-  /*background-color: #FFF;*/
+  background-color: #fff;
   color: #000000; }
 
 .wc-message-from-bot svg.wc-message-callout path {
@@ -419,7 +427,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
   display: none; }
 
 .wc-message-from-bot svg.wc-message-callout {
-  left: -6px; }
+  left: 10px; }
 
 /* console */
 .wc-console > * {
@@ -430,10 +438,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
 .wc-console label {
   cursor: pointer;
   display: inline-block;
-  height: 50px;
-  width: 60px;
-  background-color:#fff
-}
+  height: 50px; }
 
 .wc-console svg {
   fill: #8a8a8a;
@@ -460,8 +465,8 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea div {
 
 .wc-textbox {
   bottom: 0;
-  left: 60px;
-  right: 60px; }
+  left: 48px;
+  right: 49px; }
 
 .wc-send {
   right: 0; }

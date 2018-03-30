@@ -7,54 +7,44 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <meta name="viewport" content="width=380" />
 
-    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/botchat.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="assets/js/start.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/js/operation.js"></script>
     <script type="text/javascript" src="assets/js/ui.js"></script>
 
-    <!--<script type="text/javascript">
-        $(function () {
-            $('.mainBG').css({ 'height': ($(document).height()) + 'px' });
-            $(window).resize(function () {
-                $('.mainBG').css({ 'height': ($(document).height()) + 'px' });
-            });
-        });
-    </script>-->
+	<script type="text/javascript">
+			
+    </script>
 </head>
 <body>
-    <div class="mainBG">
-        <!--<img src="assets/image/chatbotStyle/psa_background.png" />-->
-        <div id="wrapper">
-            <div id="navi-header-wrap">
-                <div class="banner" id="botChatBtn">
-
-                    <!--<p class="botBtnPosition">
-                        <a id="botChatBtn" class="botStartBtn" href="javascript:void(0);">
-                            챗봇과 대화하기
-                        </a>
-                    </p>-->
-                </div>
+    <div id="wrapper">
+        <div id="navi-header-wrap">
+            <div class="banner">
+                <p class="botBtnPosition">
+                    <a id="botChatBtn" class="botStartBtn" href="javascript:void(0);">
+                        챗봇과 대화하기
+                    </a>
+                </p>
             </div>
         </div>
-        <!-- 여기서 부터 -->
-        <div class="bot-wrap chatOn">
-            <div id="bot" />
-            <script src="assets/js/botchat.js"></script>
-            <script>
-                BotChat.App({
-                    //directLine: { secret: 'mYIQ5t-zipk.cwA.zGc.mMtK2evfxDu5cDSRyXFtaSi4V-2AOCqdOmdmOamnb-c' },    //portChatBot
-                    directLine: { secret: 'MZF6W8Trlww.cwA.BaA.o9Gr2Qd_tW7MxS0P3i5J0wa6AfbQ7s5y7nkmDHqTOlc' },    //chatBotPSA
-                    user: { id: 'userid' },
-                    bot: { id: 'botid' },
-                    resize: 'detect'
-                }, document.getElementById("bot"));
-            </script>
-        </div>
-        <!-- 끝 -->
     </div>
+    <!-- 여기서 부터 -->
+    <div class="bot-wrap chatOn">
+        <div id="bot" />
+        <script src="assets/js/botchat.js"></script>
+        <!--<script src="assets/js/botchat_ori.js"></script>-->
+        <script>
+            BotChat.App({
+                directLine: { secret: 'MZF6W8Trlww.cwA.BaA.o9Gr2Qd_tW7MxS0P3i5J0wa6AfbQ7s5y7nkmDHqTOlc' },
+                user: { id: 'userid' },
+                bot: { id: 'botid' },
+                resize: 'detect'
+            }, document.getElementById("bot"));
+        </script>
+    </div>
+    <!-- 끝 -->
 </body>
 </html>

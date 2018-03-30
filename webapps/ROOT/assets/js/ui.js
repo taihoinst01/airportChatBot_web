@@ -1,41 +1,44 @@
 $(function () {
-    $('#wrapper').css({ 'height': ($(document).height()) + 'px'});
+    $('#wrapper').css({ 'height': ($(document).height()) + 'px' });
     $(window).resize(function () {
         //$('#wrapper').css({ 'height': ($(document).height()) + 'px' });
     });
 
-    //팝업창 생성
+    //팝업창 생성 (img)
     $("#bot > div").add(
-        "<div class='mov-wrapper popupArea'>" +
-            "<div class='popHeader'>" +
-                "<span id='movTitle' class='popupTitle'></span>" +
-                "<button class='btnTopClose'></button>" +
-            "</div>" +
-            "<div class='popBody'>" +
-                "<iframe id='video' src='' frameborder='0' allowfullscreen='true' style='overflow-x:hidden;overflow:auto;width:100%;height:322px;'></iframe>" +
-            "</div>" +
+        "<div class='img-wrapper popupArea'>" +
+        "<div class='popBody'>" +
+        "<img src='' class='popImage'>" +
+        "</div>" +
         "</div>").appendTo("#bot");
 
-    //챗봇창 상단 생성
+    //챗봇창 상단
     $(".wc-header > span").add(
         "<span class='chatTitle'></span>" +
-        "<span class='chatTitleText'><strong>Safety</strong> ChatBot</span>" +
+        "<span class='chatTitleText'><strong>TaihoBot</strong></span>" +
+        "<span class='chatTitleUser'>taiho님과 대화</span>" +
+
         "<span class='topIcon btnClose'><button class='topIcon03'></button></span>" +
         "<span class='topIcon btnLayer btnLayerFull'><button class='topIcon02'></button></span>" +
-        "<span class='topIcon btnMin'><button class='topIcon01'></button></span>").appendTo(".wc-header");
+        "<span class='topIcon btnMin'><button class='topIcon01'></button></span>" +
 
-    //챗봇 메뉴창 생성
-    $(".wc-chatview-panel > div").add(
-        "<div class='menuBox off'>" +
-        "<p class='menuReStartBtn'><span> Menu </span></p>" +
-        "<ul>" +
-        //"<li class='menuSelectBtn'><span><a href='#' onclick='viewMenu('Accident analysis')'> Accident analysis </span></a></li>" +
-        //"<li class='menuSelectBtn'><span><a href='#' onclick='viewMenu('Accident trends')'> Accident trends </span></a></li>" +
-        "<li class='menuSelectBtn'><span><a href='#' onclick='viewMenu()'> return home </span></a></li>" +
-        "</ul>" +
-        "</div > ").appendTo(".wc-chatview-panel");
+        "<div class='chatStatus'>" +
+            "<div class='chatStatus1'><strong>TaihoBot</strong><span class='question'></span></div>" +
+            "<div class='chatStatus2'>상태 알수 없음</div>" +
+            "<div class='chatStatus3'><span class='iconUser1'></span>참가자2명</div>" +
+            "<div class='iconUser2'></div>" +
+        "</div > ").appendTo(".wc-header");
+    $(".wc-console").add(
+        "<div class='chatFooter'>" +
+            "<div class='chatFooterIcon1'></div>" +
+            "<div class='chatFooterIcon2'></div>" +
+            "<div class='chatFooterIcon3'></div>" +
+            "<div class='chatFooterIcon4'></div>" +
+            "<div class='chatFooterIcon5'></div>" +
+        "</div > "
+    ).appendTo(".wc-chatview-panel");
 
-    //챗봇창 버튼 동작
+    //챗봇창 버튼
     $('.btnClose').click(function () {
         $('.wc-chatview-panel').css('bottom', 0).hide();
         $('.bot-wrap').hide().removeClass("chatOn").addClass("chatOff");
@@ -51,7 +54,7 @@ $(function () {
     $(document).on('click', '.wc-header [class*=btnLayer]', function () {
         if ($(this).hasClass('btnLayerMid')) {
             $('.wc-chatview-panel').css({ "overflow": "visible" })
-            $('.wc-chatview-panel').animate({ "height": "582px" }, "fast");
+            $('.wc-chatview-panel').animate({ "height": "867px" }, "fast");
             $('.wc-console, wc-message-pane').show();
             $('.btnLayer').removeClass('btnLayerMid').addClass('btnLayerFull');
             $('.btnLayer > button').css({ 'display': 'inline-block' }).removeClass('topIcon02-1').addClass('topIcon02');
@@ -63,40 +66,20 @@ $(function () {
         }
     });
 
-    //챗봇 메뉴 버튼 동작
-    $('.menuIcon').click(function (){
-        if ($('.menuBox').hasClass("off")) {
-            $('.menuBox').removeClass('off').addClass('on');
-            $('.menuBox').css({ 'display': 'block' });
-        } else {
-            $('.menuBox').removeClass('on').addClass('off');
-            $('.menuBox').css({ 'display': 'none' });
-        }
+    //챗봇 팝업 동작 (img)
+    //img on
+    $(document).on('click', '.ac-image > img', function () {
+        $('#wrapper').css({ 'opacity': '0.8', 'background-color': '#151515' });
+        $('.botStartBtn').css({ 'opacity': '0.3', 'pointer-events': 'none' });
+        $('.wc-chatview-panel').css({ 'opacity': '0.3', 'pointer-events': 'none' });
+        $('.img-wrapper').css({ "opacity": "1", "display": "block" });
+        $('.popBody > img').attr('src', $(this).attr('src'));
     });
-    
-    $(document).on('click', '.wc-card-play > .non-adaptive-content', function () {
-        var movPopTitle = $(this).children().eq(1).attr('alt');
-        $('#movTitle').text(movPopTitle);
-        var movPopUrl = $(this).children().eq(2).attr('alt');
-        $('#video').attr('src', movPopUrl);
-        $('.mov-wrapper').show().animate({ "right": "380px", "opacity": "1", "display": "block" }, "fast").fadeIn("fast");
-    });
-    $('.btnTopClose').click(function () {
-        $("#video").attr('src', '');
-        $('.mov-wrapper').hide().animate({ "right": "-380px", "opacity": "0", "display": "none" }, "slow").fadeOut("slow");
+    //img off
+    $('.popBody').click(function () {
+        $('#wrapper').css({ 'opacity': '', 'background-color': '' });
+        $('.botStartBtn').css({ 'opacity': '', 'pointer-events': '' });
+        $('.wc-chatview-panel').css({ 'opacity': '', 'pointer-events': '' });
+        $('.img-wrapper').css({"opacity": "0", "display": "none" });
     });
 });
-
-//챗봇 메뉴 처음으로 돌아가기
-function viewMenu() {
-    var returnText = "return home";     // 처음으로 돌아가는 텍스트
-    $('div.wc-console').addClass('has-text');
-    $('input[type="text"].wc-shellinput').attr('value', returnText);
-    $('input[type="text"].wc-shellinput').val(returnText);
-    $('label.wc-send').trigger('click');
-    $('input[type="text"].wc-shellinput').attr('value', '');
-    $('input[type="text"].wc-shellinput').val('');
-    $('.wc-console').removeClass('has-text');
-    $('.menuBox').removeClass('on').addClass('off');
-    $('.menuBox').css({ 'display': 'none' });
-}

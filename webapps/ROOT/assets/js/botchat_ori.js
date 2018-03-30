@@ -1320,7 +1320,7 @@
                     var n;
                     e.format.options.showHeader && (n = i.createElement("div", {
                         className: "wc-header"
-                    }));
+                    }, i.createElement("span", null, e.format.strings.title)));
                     var r;
                     return "detect" === this.props.resize && (r = i.createElement(g, {
                         onresize: this.resizeListener
@@ -4501,8 +4501,7 @@
                     ref: function(e) {
                         return t.scrollDiv = e
                     }
-                }, this.props.children)
-                ), o.createElement("button", {
+                }, this.props.children)), o.createElement("button", {
                     ref: function(e) {
                         return t.nextButton = e
                     },
@@ -7002,7 +7001,6 @@
                     } else e.adaptiveCardContainer.onCardAction("string" == typeof t.data ? "imBack" : "postBack", t.data)
             }
         };
-        
         var p = function(t) {
             function e(e) {
                 var n = t.call(this, e) || this;
@@ -7060,22 +7058,6 @@
             }, e.prototype.render = function() {
                 var t, e = this,
                     n = this.state && this.state.errors && this.state.errors.length > 0;
-                /*KSO*/
-                var msgMinutes = new Date().getMinutes();
-                var tempMinutes = msgMinutes;
-                if (msgMinutes < 10) {
-                    tempMinutes = "0" + tempMinutes.toString();
-                }
-                var getHour = new Date().getHours();
-                var ampm = '오전';
-                if (getHour > 12) {
-                    getHour = getHour - 12
-                    ampm = '오후';
-                }
-                var writeTime = ampm + " " + getHour + ":" + tempMinutes;
-                var timeDiv = "";
-                timeDiv = s.createElement("p", { className: "timeStampBot" }, writeTime);
-
                 return t = n ? s.createElement("div", null, s.createElement("svg", {
                     className: "error-icon",
                     viewBox: "0 0 15 12.01"
@@ -7087,13 +7069,13 @@
                     className: "non-adaptive-content"
                 }, this.props.children) : null, s.createElement("div", {
                     className: c.classList("wc-card", "wc-adaptive-card", this.props.className, n && "error"),
-                    ref: function (t) {
+                    ref: function(t) {
                         return e.div = t
                     },
-                    onClick: function (t) {
+                    onClick: function(t) {
                         return e.onClick(t)
                     }
-                }, t, timeDiv)
+                }, t)
             }, e.prototype.componentDidUpdate = function() {
                 this.props.onImageLoad && this.props.onImageLoad()
             }, e
@@ -7277,25 +7259,10 @@
                         return o.createElement("span", {
                             key: e
                         }, t, o.createElement("br", null))
-                });
-                /*KSO*/
-                var msgMinutes = new Date().getMinutes();
-                var tempMinutes = msgMinutes;
-                if (msgMinutes < 10) {
-                    tempMinutes = "0" + tempMinutes.toString();
-                }
-                var getHour = new Date().getHours();
-                var ampm = '오전';
-                if (getHour > 12) {
-                    getHour = getHour-12
-                    ampm = '오후';
-                }
-                var writeTime = ampm + " " + getHour + ":" + tempMinutes;
-                var timeDiv = "";
-                timeDiv = o.createElement("p", { className: "timeStampUser" }, writeTime);
+                    });
                 return o.createElement("span", {
                     className: "format-plain"
-                }, n, timeDiv)	//KSO
+                }, n)
             },
             s = new r({
                 html: !1,
@@ -7514,55 +7481,33 @@
                             break;
                         default:
                             var n = void 0;
-                            this.props.showTimestamp && (n = this.props.format.strings.timeSent.replace("%1", new Date(this.props.activity.timestamp).toLocaleTimeString())),
-                            t = o.createElement("span", null, this.props.activity.from.name || this.props.activity.from.id, n)
+                            this.props.showTimestamp && (n = this.props.format.strings.timeSent.replace("%1", new Date(this.props.activity.timestamp).toLocaleTimeString())), t = o.createElement("span", null, this.props.activity.from.name || this.props.activity.from.id, n)
                     }
                     var r = this.props.fromMe ? "me" : "bot",
                         i = a.classList("wc-message-wrapper", this.props.activity.attachmentLayout || "list", this.props.onClickActivity && "clickable"),
                         s = a.classList("wc-message-content", this.props.selected && "selected");
-
-                    if (r == 'me') {
-                        return o.createElement("div", {
-                            "data-activity-id": this.props.activity.id,
-                            className: i,
-                            onClick: this.props.onClickActivity
-                        }, o.createElement("div", {
-                            className: "wc-message wc-message-from-" + r,
-                            ref: function (t) {
-                                return e.messageDiv = t
-                            }
-                        }, o.createElement("div", {
-                            className: s
-                        },  this.props.children)), o.createElement("div", {
-                            className: "wc-message-from wc-message-from-" + r
-                        }))
-                    } else {
-                        return o.createElement("div", {
-                            "data-activity-id": this.props.activity.id,
-                            className: i,
-                            onClick: this.props.onClickActivity
-                        }, o.createElement("div", {
-                            className: "wc-message wc-message-from-" + r,
-                            ref: function (t) {
-                                return e.messageDiv = t
-                            }
-                        }, o.createElement("div", {
-                            className: s
-                        }, o.createElement("svg", {
-                            className: "wc-message-callout"
+                    return o.createElement("div", {
+                        "data-activity-id": this.props.activity.id,
+                        className: i,
+                        onClick: this.props.onClickActivity
+                    }, o.createElement("div", {
+                        className: "wc-message wc-message-from-" + r,
+                        ref: function(t) {
+                            return e.messageDiv = t
                         }
-                            //                o.createElement("path", {
-                            //    className: "point-left",
-                            //    d: "m0,6 l6 6 v-12 z"
-                            //}), o.createElement("path", {
-                            //    className: "point-right",
-                            //    d: "m6,6 l-6 6 v-12 z"
-                            //                })
-                        ), this.props.children)), o.createElement("div", {
-                            className: "wc-message-from wc-message-from-" + r
-                        }))
-                    }
-                    
+                    }, o.createElement("div", {
+                        className: s
+                    }, o.createElement("svg", {
+                        className: "wc-message-callout"
+                    }, o.createElement("path", {
+                        className: "point-left",
+                        d: "m0,6 l6 6 v-12 z"
+                    }), o.createElement("path", {
+                        className: "point-right",
+                        d: "m6,6 l-6 6 v-12 z"
+                    })), this.props.children)), o.createElement("div", {
+                        className: "wc-message-from wc-message-from-" + r
+                    }, t))
                 }, e
             }(o.Component);
         e.WrappedActivity = m
@@ -7689,16 +7634,12 @@
                         onChange: function() {
                             return t.onChangeFile()
                         }
-                        }),
-                    //o.createElement("label", {
-                    //    className: "wc-upload",
-                    //    htmlFor: "wc-upload-input"
-                    //},
-                    //}, o.createElement("svg", null, o.createElement("path", {
-                    //    d: "M19.96 4.79m-2 0a2 2 0 0 1 4 0 2 2 0 0 1-4 0zM8.32 4.19L2.5 15.53 22.45 15.53 17.46 8.56 14.42 11.18 8.32 4.19ZM1.04 1L1.04 17 24.96 17 24.96 1 1.04 1ZM1.03 0L24.96 0C25.54 0 26 0.45 26 0.99L26 17.01C26 17.55 25.53 18 24.96 18L1.03 18C0.46 18 0 17.55 0 17.01L0 0.99C0 0.45 0.47 0 1.03 0Z"
-                    //    })
-                        o.createElement("span", { className:"chatFormHamburger"}
-                        ), o.createElement("div", {
+                    }), o.createElement("label", {
+                        className: "wc-upload",
+                        htmlFor: "wc-upload-input"
+                    }, o.createElement("svg", null, o.createElement("path", {
+                        d: "M19.96 4.79m-2 0a2 2 0 0 1 4 0 2 2 0 0 1-4 0zM8.32 4.19L2.5 15.53 22.45 15.53 17.46 8.56 14.42 11.18 8.32 4.19ZM1.04 1L1.04 17 24.96 17 24.96 1 1.04 1ZM1.03 0L24.96 0C25.54 0 26 0.45 26 0.99L26 17.01C26 17.55 25.53 18 24.96 18L1.03 18C0.46 18 0 17.55 0 17.01L0 0.99C0 0.45 0.47 0 1.03 0Z"
+                    }))), o.createElement("div", {
                         className: "wc-textbox"
                     }, o.createElement("input", {
                         type: "text",
@@ -7718,25 +7659,14 @@
                             return t.onTextInputFocus()
                         },
                         placeholder: this.props.listening ? this.props.strings.listeningIndicator : this.props.strings.consolePlaceholder
-                    })),
-                        o.createElement("label", {
-                            className: "wc-upload",
-                            htmlFor: "wc-upload-input"
-                        },
-                            o.createElement("span", { className: "chatFormFile" }
-                        )),
-                        o.createElement("span", { className: "chatFormEmoticon" }),
-                        o.createElement("label", {
+                    })), o.createElement("label", {
                         className: r,
                         onClick: function() {
                             return t.onClickSend()
                         }
-                    },
-                        //o.createElement("svg", null, o.createElement("path", {
-                        //d: "M26.79 9.38A0.31 0.31 0 0 0 26.79 8.79L0.41 0.02C0.36 0 0.34 0 0.32 0 0.14 0 0 0.13 0 0.29 0 0.33 0.01 0.37 0.03 0.41L3.44 9.08 0.03 17.76A0.29 0.29 0 0 0 0.01 17.8 0.28 0.28 0 0 0 0.01 17.86C0.01 18.02 0.14 18.16 0.3 18.16A0.3 0.3 0 0 0 0.41 18.14L26.79 9.38ZM0.81 0.79L24.84 8.79 3.98 8.79 0.81 0.79ZM3.98 9.37L24.84 9.37 0.81 17.37 3.98 9.37Z"
-                        //})
-                        o.createElement("span", { className:"chatFormSend"}
-                        )), o.createElement("label", {
+                    }, o.createElement("svg", null, o.createElement("path", {
+                        d: "M26.79 9.38A0.31 0.31 0 0 0 26.79 8.79L0.41 0.02C0.36 0 0.34 0 0.32 0 0.14 0 0 0.13 0 0.29 0 0.33 0.01 0.37 0.03 0.41L3.44 9.08 0.03 17.76A0.29 0.29 0 0 0 0.01 17.8 0.28 0.28 0 0 0 0.01 17.86C0.01 18.02 0.14 18.16 0.3 18.16A0.3 0.3 0 0 0 0.41 18.14L26.79 9.38ZM0.81 0.79L24.84 8.79 3.98 8.79 0.81 0.79ZM3.98 9.37L24.84 9.37 0.81 17.37 3.98 9.37Z"
+                    }))), o.createElement("label", {
                         className: s,
                         onClick: function() {
                             return t.onClickMic()
@@ -7823,7 +7753,7 @@
                 messageFailed: "couldn't send",
                 messageSending: "sending",
                 timeSent: " at %1",
-                consolePlaceholder: "메세지를 입력해주세요.",
+                consolePlaceholder: "Type your message...",
                 listeningIndicator: "Listening..."
             },
             ja: {
@@ -13302,8 +13232,7 @@
                 }), e
             }(v);
         e.ActionSet = U;
-        
-        var q = function (t) {
+        var q = function(t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
                 return e._items = [], e
